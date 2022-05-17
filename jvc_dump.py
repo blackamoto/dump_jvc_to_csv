@@ -7,7 +7,7 @@ from jvc import *
 
 
 def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-1-0-1-0-blabla-alerte-btc.htm',
-             page_max=100):
+             page_min=1, page_max=100):
     if not os.path.isfile('last_page_saved.txt'):
         last_page_saved_file = open('last_page_saved.txt', 'w')
         last_page_saved_file.write('1')
@@ -19,7 +19,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
         last_page_saved_file.close()
 
     a = []
-    start = 1  # page de départ
+    start = page_min  # page de départ
     max_page = page_max  # page max du topic
     buff = 1  # ne pas toucher
     max_buff = 20  # nombre de pages avant sauvegarde partielle en .csv
@@ -57,6 +57,6 @@ def rassembler_fichiers() -> pd.DataFrame:
     return frame
 
 
-dump_jvc(page_max=80)
+dump_jvc(topic='https://www.jeuxvideo.com/forums/42-3011927-61017614-1-0-1-0-blabla-alerte-btc.htm', page_min=1, page_max=80)
 df = rassembler_fichiers()
 print(df)
