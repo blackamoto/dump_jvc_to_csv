@@ -27,7 +27,6 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
     for i in range(max(start, last_page_saved), max_page + 1):
         Posts = getPosts('-'.join(topic.split('-')[0:3]) + '-' + str(i) + '-' + '-'.join(topic.split('-')[3:]))
         print('Page ', i, '/', max_page)
-        buff = buff + 1
         time.sleep(random.random())  # attendre entre 0 et 1 seconde à chaque page pour ne pas se faire ban IP
         if buff == max_buff:
             buff = 1
@@ -41,6 +40,8 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
         for post in Posts:
             a.append(post)
             # print(post)
+        buff = buff + 1
+
 
 
 def rassembler_fichiers() -> pd.DataFrame:
