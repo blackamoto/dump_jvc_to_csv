@@ -36,12 +36,12 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
             # éveiller les soupçons et se faire ban IP
             last_page_saved = open("last_page_saved.txt", "w")
             last_page_saved.write(str(i))
+            a = []
 
         for post in Posts:
             a.append(post)
             # print(post)
         buff = buff + 1
-
 
 
 def rassembler_fichiers() -> pd.DataFrame:
