@@ -30,7 +30,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
         buff = buff + 1
         time.sleep(random.random())  # attendre entre 0 et 1 seconde à chaque page pour ne pas se faire ban IP
         if buff == max_buff:
-            buff = 0
+            buff = 1
             df = pd.DataFrame(a)
             df.to_csv('-'.join(topic.split('-')[7:]) + '_{}'.format(i).replace('.htm', ''))
             time.sleep(random.random() * 10)  # attendre entre 1 et 10 secondes toute les 20 pages pour ne pas
