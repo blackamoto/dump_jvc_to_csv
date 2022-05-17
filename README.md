@@ -2,7 +2,7 @@
 
 remerciement à https://github.com/IngenieurJVC2/jvc.py pour sa librairie de scrap
 
-packages à installer avec pip au préalable : ccxt, pandas, requests_html ("pip install XXX")
+packages à installer avec pip au préalable : pandas, requests_html ("pip install XXX")
 
 
 1) modifier jvc_dump.py en fonction du topic et les paramètres 
