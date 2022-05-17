@@ -1,5 +1,7 @@
 import os
 import glob
+import random
+import time
 import pandas as pd
 from jvc import *
 
@@ -23,8 +25,7 @@ start = 1 # page de départ
 max=4238 # page max du topic
 buff=0 # ne pas toucher 
 max_buff = 20 # nombre de pages avant sauvegarde partielle en .csv 
-import random
-import time
+
 for i in range(min(start,last_page_saved),max):
 
     Posts = getPosts('https://www.jeuxvideo.com/forums/42-3011927-61017614-'+str(i+1)+'-0-1-0-blabla-alerte-btc.htm')
@@ -35,7 +36,7 @@ for i in range(min(start,last_page_saved),max):
         buff=0
         df=pd.DataFrame(a)
         df.to_csv('alerte_btc_{}'.format(i))
-        time.sleep(random.random()*10)
+        time.sleep(random.random()*10) # attendre de manière aléatoire entre 1 et 10 secondes toute les 20 pages pour ne pas éveiller les soupçons et se faire ban IP
         last_page_saved = open("last_page_saved.txt", "w")
         last_page_saved.write(str(i))
 
