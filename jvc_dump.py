@@ -21,10 +21,10 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
     a = []
     start = 1  # page de départ
     max_page = page_max  # page max du topic
-    buff = 0  # ne pas toucher
+    buff = 1  # ne pas toucher
     max_buff = 20  # nombre de pages avant sauvegarde partielle en .csv
 
-    for i in range(max(start, last_page_saved), max_page+1):
+    for i in range(max(start, last_page_saved), max_page + 1):
         Posts = getPosts('-'.join(topic.split('-')[0:2]) + str(i) + '-' + '-'.join(topic.split('-')[3:]))
         print('Page ', i, '/', max_page)
         buff = buff + 1
@@ -32,7 +32,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
         if buff == max_buff:
             buff = 0
             df = pd.DataFrame(a)
-            df.to_csv(topic.split('-')[-1] + '_{}'.format(i))
+            df.to_csv('-'.join(topic.split('-')[7:]) + '_{}'.format(i).replace('.htm', ''))
             time.sleep(random.random() * 10)  # attendre entre 1 et 10 secondes toute les 20 pages pour ne pas
             # éveiller les soupçons et se faire ban IP
             last_page_saved = open("last_page_saved.txt", "w")
@@ -44,7 +44,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
 
 
 def rassembler_fichiers() -> pd.DataFrame:
-    all_files = glob.glob("./alerte_btc*")
+    all_files = glob.glob("./blabla*")
     li = []
     for filename in all_files:
         df = pd.read_csv(filename, index_col=None, header=0)
@@ -56,4 +56,6 @@ def rassembler_fichiers() -> pd.DataFrame:
     return frame
 
 
-dump_jvc()
+dump_jvc(page_max=80)
+df = rassembler_fichiers()
+print(df)
