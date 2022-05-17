@@ -31,7 +31,7 @@ for i in range(min(start,last_page_saved),max):
     Posts = getPosts('https://www.jeuxvideo.com/forums/42-3011927-61017614-'+str(i+1)+'-0-1-0-blabla-alerte-btc.htm')
     print(i+1,'/', max )
     buff=buff+1
-    time.sleep(random.random())
+    time.sleep(random.random()) # attendre entre 0 et 1 seconde à chaque page pour ne pas se faire ban IP
     if buff==max_buff:
         buff=0
         df=pd.DataFrame(a)
