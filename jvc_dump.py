@@ -31,7 +31,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
         if buff == max_buff:
             buff = 0
             df = pd.DataFrame(a)
-            df.to_csv('-'.join(topic.split('-')[7:]) + '_{}'.format(i).replace('.htm', ''))
+            df.to_csv('-'.join(topic.split('-')[7:]).replace('.htm', '') + '_{}'.format(i))
             time.sleep(random.random() * 10)  # attendre entre 1 et 10 secondes toute les 20 pages pour ne pas
             # éveiller les soupçons et se faire ban IP
             last_page_saved = open("last_page_saved.txt", "w")
