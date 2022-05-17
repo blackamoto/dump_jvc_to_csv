@@ -25,7 +25,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
     max_buff = 20  # nombre de pages avant sauvegarde partielle en .csv
 
     for i in range(max(start, last_page_saved), max_page + 1):
-        Posts = getPosts('-'.join(topic.split('-')[0:2]) + str(i) + '-' + '-'.join(topic.split('-')[3:]))
+        Posts = getPosts('-'.join(topic.split('-')[0:3]) + '-' + str(i) + '-' + '-'.join(topic.split('-')[3:]))
         print('Page ', i, '/', max_page)
         buff = buff + 1
         time.sleep(random.random())  # attendre entre 0 et 1 seconde à chaque page pour ne pas se faire ban IP
