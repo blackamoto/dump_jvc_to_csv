@@ -13,7 +13,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
              page_min=1, page_max=100):
     if not os.path.isfile('last_page_saved.txt'):
         last_page_saved_file = open('last_page_saved.txt', 'w')
-        last_page_saved_file.write('1')
+        last_page_saved_file.write('0')
         last_page_saved_file.close()
         last_page_saved = 0
     else:
@@ -36,7 +36,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
         if buff == max_buff:
             buff = 0
             df = pd.DataFrame(a)
-            df.to_csv('-'.join(topic.split('-')[7:]).replace('.htm', '') + '_{}'.format(i))
+            df.to_csv('-'.join(topic.split('-')[7:]).replace('.htm', '') + '_{}'.format(i), index=False)
             time.sleep(random.random() * 10)  # attendre entre 1 et 10 secondes toute les 20 pages pour ne pas
             # éveiller les soupçons et se faire ban IP
             last_page_saved = open("last_page_saved.txt", "w")
@@ -74,6 +74,6 @@ def rassembler_fichiers() -> pd.DataFrame:
 
 #
 dump_jvc(topic='https://www.jeuxvideo.com/forums/42-3011927-61017614-1-0-1-0-blabla-alerte-btc.htm', page_min=1,
-          page_max=83)
+          page_max=65)
 df = rassembler_fichiers()
 print(df)
