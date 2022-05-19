@@ -50,7 +50,7 @@ def dump_jvc(topic: str = 'https://www.jeuxvideo.com/forums/42-3011927-61017614-
             # print(post)
         if i == max_page:
             df = pd.DataFrame(a)
-            df.to_csv('-'.join(topic.split('-')[7:]).replace('.htm', '') + '_{}'.format(i))
+            df.to_csv('-'.join(topic.split('-')[7:]).replace('.htm', '') + '_{}'.format(i), index=False)
             last_page_saved = open("last_page_saved.txt", "w")
             last_page_saved.write(str(i))
             last_page_saved.close()
